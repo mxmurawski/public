@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mmdb
+spec:
+  selector:
+    matchLabels:
+      app: mmdb
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: mmdb
+    spec:
+      containers:
+        - name: mmdb
+          image: mikolajmurawski2/public:cus-app-db
+          ports:
+            - containerPort: 1433
+              name: mmdb

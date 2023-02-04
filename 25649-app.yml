@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mmapp
+spec:
+  selector:
+    matchLabels:
+      app: mmapp
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: mmapp
+    spec:
+      containers:
+        - name: mmapp
+          image: mikolajmurawski2/public:cus-app-api
+          ports:
+            - containerPort: 5001
+              name: "http"
+          env:
+            - name: APP_DB
+              value: $(MMDBSVC_SERVICE_HOST)
